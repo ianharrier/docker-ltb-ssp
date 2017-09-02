@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    web:
+        build:
+            context: ./images/ltb-ssp
+            args:
+                - SSP_VERSION=${SSP_VERSION}
+        image: ianharrier/ltb-ssp:${SSP_VERSION}
+        restart: unless-stopped
+        ports:
+            - ${WEB_PORT}:80
+        volumes:
+            - ./volumes/web/config.php:/srv/www/app/conf/config.inc.php
